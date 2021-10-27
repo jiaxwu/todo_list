@@ -15,6 +15,9 @@ jobs:
         with:
           node-version: '14.x'
       
+      - name: log
+        run: pwd
+
       - name: Install
         run: npm install
 
