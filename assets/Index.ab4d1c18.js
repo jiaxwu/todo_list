@@ -1,0 +1,1 @@
+import{g as a,u as r,r as c,o as u,h as i,i as l,w as m,j as o,k as n,t as p,F as _}from"./vendor.3a67320f.js";const d=n("\u589E\u52A01"),g=a({setup(f){const t=r();return(k,e)=>{const s=c("el-button");return u(),i(_,null,[l(s,{type:"primary",onClick:e[0]||(e[0]=x=>o(t).commit("increment"))},{default:m(()=>[d]),_:1}),n(" "+p(o(t).state.count),1)],64)}}});export{g as default};
