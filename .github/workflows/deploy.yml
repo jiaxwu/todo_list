@@ -19,15 +19,15 @@ jobs:
         run: cd front
 
       - name: Install
-        run: npm install
+        run: npm install --prefix ./front
 
       - name: Build
-        run: npm run build
+        run: npm run build --prefix ./front
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3 
         with:
-          publish_dir: ./dist 
+          publish_dir: ./front/dist 
           github_token: ${{ secrets.FRONT_DEPLOY }}
           user_name: ${{ secrets.MY_USER_NAME }}
           user_email: ${{ secrets.MY_USER_EMAIL }}
