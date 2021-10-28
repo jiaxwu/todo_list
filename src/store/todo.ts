@@ -4,6 +4,7 @@ class TodoStore {
   /**
    * 数据库实例
    */
+  // @ts-ignore
   db: Database
 
   /**
@@ -188,6 +189,7 @@ class TodoStore {
    * 打开数据库，打开后可以对数据库进行操作
    */
   private openDb(): void {
+    // @ts-ignore
     this.db = openDatabase(this.todoDbName, "1.0", "Todo数据库", 0);
   }
 
@@ -197,16 +199,20 @@ class TodoStore {
    * @param params 参数列表
    * @returns 执行结果
    */
+  // @ts-ignore
   private async transaction(sql: string, params: Array<string | number | null>): Promise<void | SQLResultSet> {
     return new Promise((resolve, reject) => {
-      this.db.transaction((tx) => {
+      // @ts-ignore
+      this.db.transaction((tx: SQLTransaction) => {
         tx.executeSql(
           sql,
           params,
-          (tx, res) => {
+          // @ts-ignore
+          (tx: SQLTransaction, res: SQLResultSet) => {
             resolve(res);
           },
-          (tx, err) => {
+          // @ts-ignore
+          (tx: SQLTransaction, err: Error) => {
             reject(err);
           }
         );
