@@ -1,8 +1,17 @@
-export default class Todo {
-  id!: number
+export class ITodo {
+  id?: number
   content!: string
-  isComplete!: boolean
-  completeTime!: number
+  isComplete!: number
+  completeTime?: number
+  updateTime!: number
+  createTime!: number
+}
+
+export class Todo implements ITodo {
+  id?: number
+  content!: string
+  isComplete!: number
+  completeTime?: number
   updateTime!: number
   createTime!: number
 }

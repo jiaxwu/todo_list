@@ -3,8 +3,9 @@ import { ref } from 'vue';
 import AddTodo from './AddTodo.vue';
 import TodoList from './TodoList.vue';
 import todoStore from '../store/todo'
-import Todo from '../entity/todo';
+import { Todo } from '../entity/todo';
 import { ElMessage } from 'element-plus'
+
 
 const unTodos = ref<Todo[]>([])
 const getUncompleteTodos = () => todoStore.getUncompleteTodos(1, 100000).then(todos => {
@@ -35,7 +36,7 @@ const onAddTodo = (id: number) => {
 }
 
 const onCheckUnTodo = (idx: number) => {
-  todoStore.completeTodo(unTodos.value[idx].id).then(count => {
+  todoStore.completeTodo(unTodos.value[idx].id!).then(count => {
     if (count > 0) {
       unTodos.value.splice(idx, 1)
     }
@@ -46,7 +47,7 @@ const onCheckUnTodo = (idx: number) => {
 }
 
 const onCheckTodo = (idx: number) => {
-  todoStore.reTodo(completeTodos.value[idx].id).then(count => {
+  todoStore.reTodo(completeTodos.value[idx].id!).then(count => {
     if (count > 0) {
       completeTodos.value.splice(idx, 1)
     }
@@ -57,7 +58,7 @@ const onCheckTodo = (idx: number) => {
 }
 
 const onUnCompleteTodoContentChange = (idx: number, content: string) => {
-  todoStore.updateContent(unTodos.value[idx].id, content).then(count => {
+  todoStore.updateContent(unTodos.value[idx].id!, content).then(count => {
     if (count > 0) {
       unTodos.value[idx].content = content
     }
@@ -67,7 +68,7 @@ const onUnCompleteTodoContentChange = (idx: number, content: string) => {
 }
 
 const onCompleteTodoContentChange = (idx: number, content: string) => {
-  todoStore.updateContent(completeTodos.value[idx].id, content).then(count => {
+  todoStore.updateContent(completeTodos.value[idx].id!, content).then(count => {
     if (count > 0) {
       completeTodos.value[idx].content = content
     }
@@ -77,20 +78,16 @@ const onCompleteTodoContentChange = (idx: number, content: string) => {
 }
 
 const onDeleteUnTodo = (idx: number) => {
-  todoStore.deleteTodo(unTodos.value[idx].id).then(count => {
-    if (count > 0) {
-      unTodos.value.splice(idx, 1)
-    }
+  todoStore.deleteTodo(unTodos.value[idx].id!).then(() => {
+    unTodos.value.splice(idx, 1)
   }).catch(err => {
     ElMessage.error(`删除todo失败：${err}`)
   })
 }
 
 const onDeleteCompleteTodo = (idx: number) => {
-  todoStore.deleteTodo(completeTodos.value[idx].id).then(count => {
-    if (count > 0) {
-      completeTodos.value.splice(idx, 1)
-    }
+  todoStore.deleteTodo(completeTodos.value[idx].id!).then(() => {
+    completeTodos.value.splice(idx, 1)
   }).catch(err => {
     ElMessage.error(`删除todo失败：${err}`)
   })
