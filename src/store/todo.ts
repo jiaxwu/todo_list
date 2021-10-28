@@ -112,58 +112,6 @@ class TodoStore {
       createTime: now
     })
   }
-
-  // /**
-  //  * 创建表
-  //  */
-  // private async createTable(): Promise<void> {
-  //   return this.transaction(
-  //     `CREATE TABLE IF NOT EXISTS ${this.todoTableName} (
-  //       id INTEGER  PRIMARY KEY AUTOINCREMENT,
-  //       content TEXT NOT NULL,
-  //       is_complete INTEGER NOT NULL,
-  //       complete_time INTEGER ,
-  //       update_time INTEGER NOT NULL,
-  //       create_time INTEGER NOT NULL
-  //     )`,
-  //     []
-  //   );
-  // }
-
-  // /**
-  //  * 打开数据库，打开后可以对数据库进行操作
-  //  */
-  // private openDb(): void {
-  //   // @ts-ignore
-  //   this.db = openDatabase(this.todoDbName, "1.0", "Todo数据库", 0);
-  // }
-
-  // /**
-  //  * 执行事务的封装
-  //  * @param sql SQL
-  //  * @param params 参数列表
-  //  * @returns 执行结果
-  //  */
-  // // @ts-ignore
-  // private async transaction(sql: string, params: Array<string | number | null>): Promise<void | SQLResultSet> {
-  //   return new Promise((resolve, reject) => {
-  //     // @ts-ignore
-  //     this.db.transaction((tx: SQLTransaction) => {
-  //       tx.executeSql(
-  //         sql,
-  //         params,
-  //         // @ts-ignore
-  //         (tx: SQLTransaction, res: SQLResultSet) => {
-  //           resolve(res);
-  //         },
-  //         // @ts-ignore
-  //         (tx: SQLTransaction, err: Error) => {
-  //           reject(err);
-  //         }
-  //       );
-  //     });
-  //   });
-  // }
 }
 
 let todoStore: TodoStore = new TodoStore()
