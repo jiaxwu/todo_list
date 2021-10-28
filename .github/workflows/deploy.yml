@@ -1,18 +1,21 @@
-name: buildAndDeploy
+name: GitHub Actions Build and Deploy Demo 
 on:
-  push
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest # 我们选择使用最新的ubuntu系统
-    steps:
-    - name: checkout
-      uses: actions/checkout@master # 将代码拷贝到虚机中
-
-    - name: buildAndDeploy
-      uses: JamesIves/github-pages-deploy-action@master 
-      env:
-        ACCESS_TOKEN: ${{ secrets.FRONT_DEPLOY }} # 使用刚新建的secret
-        BRANCH: gh-pages # 存放产物的分支名称
-        FOLDER: dist # 存放build后产物的目录
-        BUILD_SCRIPT: npm install && npm run build # 执行的命令
-
+  push:
+    branches: 
+      - master 
+jobs: 
+ build-and-deploy:
+   runs-on: ubuntu-latest
+   steps: 
+   - name: Checkout 
+     uses: actions/checkout@v2
+   - name: Install and Build 🔧 
+     run: |
+        npm install
+        npm run build
+   - name:  Deploy 
+    # JamesIves/github-pages-deploy-action@4.1.1 not need token
+     uses: JamesIves/github-pages-deploy-action@4.1.1
+     with:
+      branch: gh-pages
+      folder: public
