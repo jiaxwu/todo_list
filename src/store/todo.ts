@@ -29,10 +29,10 @@ class TodoStore {
   }
 
   /**
-     * 获取todo
-     * @param id todo编号
-     * @returns todo
-     */
+   * 获取todo
+   * @param id todo编号
+   * @returns todo
+   */
   public async getTodo(id: number): Promise<Todo | null> {
     const res = await this.transaction(
       `SELECT * from ${this.todoTableName} WHERE id = ?`,
@@ -52,11 +52,11 @@ class TodoStore {
   }
 
   /**
-     * 获取完成的todo
-     * @param page 页码
-     * @param step 条数
-     * @returns 完成的todo
-     */
+   * 获取完成的todo
+   * @param page 页码
+   * @param step 条数
+   * @returns 完成的todo
+   */
   public async getCompleteTodos(page: number, step: number): Promise<Array<Todo>> {
     const res = await this.transaction(
       `SELECT * from ${this.todoTableName} WHERE is_complete = ? ORDER BY complete_time DESC LIMIT ? OFFSET ?`,
