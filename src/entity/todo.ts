@@ -1,4 +1,4 @@
-export class ITodo {
+export default class ITodo {
   id?: number
   content!: string
   isComplete!: number

@@ -1,4 +1,4 @@
-import { ITodo, Todo } from "../entity/todo"
+import ITodo, { Todo } from "../entity/todo"
 import Dexie from "dexie"
 
 class TodoStore {
