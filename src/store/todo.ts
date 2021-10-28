@@ -17,13 +17,15 @@ class TodoStore {
    */
   todoTableName: string = 'todo'
 
-  private constructor() { }
+  constructor() {
+    this.openDb()
+  }
 
-  public static async buildTodoStore() {
-    const todoStore = new TodoStore()
-    todoStore.openDb()
-    await todoStore.createTable()
-    return todoStore
+  /**
+   * 初始化TodoStore
+   */
+  public async init(): Promise<void> {
+    return this.createTable()
   }
 
   /**
@@ -221,6 +223,7 @@ class TodoStore {
   }
 }
 
-const todoStore = await TodoStore.buildTodoStore()
+let todoStore: TodoStore = new TodoStore()
+todoStore.init()
 
 export default todoStore
